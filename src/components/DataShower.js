@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { generateJWT } from '../helper/jwt';
 import { toJson } from '../helper/toJson';
 import { useForm } from '../hook/useForm';
+import exportFromJSON from 'export-from-json'
+
 
 export const DataShower = () => {
     const {data} = useSelector( state => state.text );
@@ -10,17 +12,32 @@ export const DataShower = () => {
     const [formValues ,handleInputChange] = useForm({
         delimitador: ";"
     });
-
+    
     const {delimitador} = formValues;
-
+    
     const [json, setjson] = useState();
 
+
+    const handleDownloadJSON = (e) =>{
+        const data = json
+        const fileName = 'EncryptedJSON'
+        let exportType =  exportFromJSON.types.json
+        exportFromJSON({ data, fileName, exportType })
+    }
+
+    const handleDownloadXML = (e) =>{
+        const data = json
+        const fileName = 'EncryptedXML'
+        let exportType =  exportFromJSON.types.xml
+        exportFromJSON({ data, fileName, exportType })
+    }
+    
 
     const handleLogin = (e) =>{
         e.preventDefault();
         // toJson(data,delimitador);
         setjson(toJson(data,delimitador,"Galatea"))
-        // generateJWT(json,"Galatea");
+        // console.log()
     }
 
     return (
@@ -43,7 +60,18 @@ export const DataShower = () => {
 
         {(json) && 
             <div>{JSON.stringify(json,null,2)}</div>
+
+
         }
+
+        {(json) && 
+            <>
+                <button onClick={handleDownloadJSON}>Descargar JSON</button>
+                <button onClick={handleDownloadXML}>Descargar XML</button>
+            </>
+        }
+
+
 
     </>
     )

@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { DataShower } from './components/DataShower';
 import { FileChooser } from './components/FileChooser'
+import { FileExport } from './components/FileExport';
 import { HeaderApp } from './components/HeaderApp'
 
 export const Encrypter = () => {
@@ -19,6 +20,7 @@ export const Encrypter = () => {
             { (active) &&
                 <DataShower/>
             }
+            {/* <FileExport/> */}
         </>
     )
 }
