@@ -11,10 +11,11 @@ export const DataShower = () => {
     const {data} = useSelector( state => state.text );
 
     const [formValues ,handleInputChange] = useForm({
-        delimitador: ";"
+        delimitador: ";",
+        key:""
     });
     
-    const {delimitador} = formValues;
+    const {delimitador,key} = formValues;
     
     const [json, setjson] = useState();
 
@@ -34,10 +35,10 @@ export const DataShower = () => {
     }
     
 
-    const handleLogin = (e) =>{
+    const handleSubmit = (e) =>{
         e.preventDefault();
         // toJson(data,delimitador);
-        setjson(toJson(data,delimitador,"Galatea"))
+        setjson(toJson(data,delimitador,key))
         // console.log()
     }
 
@@ -54,8 +55,9 @@ export const DataShower = () => {
                     ))
                 }
             </ul>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSubmit}>
             <input type="text" placeholder='Delimitador' name="delimitador" autoComplete='off' value={delimitador} onChange={handleInputChange}/>
+            <input type="text" placeholder='Llave' name="key" autoComplete='off' value={key} onChange={handleInputChange}/>
             <button>Generar JSON</button>
         </form>
 

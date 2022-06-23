@@ -3,6 +3,7 @@ import { decrypt, encrypt } from "./Vingenere";
 export const toJson=(data,delimitator,key)=>{
 
     let clients = [];
+    console.log(key)
 
     data.forEach(element => {
         let arr = element.split(delimitator);
