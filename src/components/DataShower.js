@@ -4,6 +4,7 @@ import { generateJWT } from '../helper/jwt';
 import { toJson } from '../helper/toJson';
 import { useForm } from '../hook/useForm';
 import exportFromJSON from 'export-from-json'
+import { FileExport } from './FileExport';
 
 
 export const DataShower = () => {
@@ -59,17 +60,22 @@ export const DataShower = () => {
         </form>
 
         {(json) && 
-            <div>{JSON.stringify(json,null,2)}</div>
-
+            <>
+                <br/>
+                <div>Preview del JSON generado</div>
+                <br/>
+                <div>{JSON.stringify(json,null,2)}</div>
+                <FileExport datos={json}/>
+            </>
 
         }
 
-        {(json) && 
+        {/* {(json) && 
             <>
                 <button onClick={handleDownloadJSON}>Descargar JSON</button>
                 <button onClick={handleDownloadXML}>Descargar XML</button>
             </>
-        }
+        } */}
 
 
 

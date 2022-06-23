@@ -18,6 +18,8 @@ export const  FileChooser = () =>{
  
     return (
         <>
+            <div>Encriptar texto: </div>
+            <br/>
             <button onClick={() => openFileSelector()}>Seleccione archivo de texto.</button>
             <br />
             {filesContent.map((file, index) => (
