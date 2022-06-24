@@ -2,7 +2,8 @@ import React from 'react'
 import exportFromJSON from 'export-from-json'
 
 
-export const FileExport = ({datos}) => {
+export const FileExport = ({datos,flag}) => {
+
     const handleDownloadJSON = (e) =>{
         const data = datos
         const fileName = 'EncryptedJSON'
@@ -17,11 +18,23 @@ export const FileExport = ({datos}) => {
         exportFromJSON({ data, fileName, exportType })
     }
     
+    const handleDownloadTXT = (e) =>{
+        const data = datos
+        const fileName = 'Text'
+        let exportType =  exportFromJSON.types.txt
+        exportFromJSON({ data, fileName, exportType })
+    }
+    
+
     return (
         <>
-            <br/>
-            <button onClick={handleDownloadJSON}>Descargar JSON</button>
-            <button onClick={handleDownloadXML}>Descargar XML</button>
+            {(!flag) && <div>
+                
+                    <br/>
+                    <button onClick={handleDownloadJSON}>Descargar JSON</button>
+                    <button onClick={handleDownloadXML}>Descargar XML</button>
+                </div>}
+            {(flag) && <button onClick={handleDownloadTXT}>Descargar TXT</button>}
         </>
     )
 }

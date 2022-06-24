@@ -67,7 +67,7 @@ export const DataShower = () => {
                 <div>Preview del JSON generado</div>
                 <br/>
                 <div>{JSON.stringify(json,null,2)}</div>
-                <FileExport datos={json}/>
+                <FileExport datos={json} flag={false}/>
             </>
 
         }
