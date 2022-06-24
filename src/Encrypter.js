@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { DataShower } from './components/DataShower';
 import { FileChooser } from './components/FileChooser'
 import { FileExport } from './components/FileExport';
+import { FileUploader } from './components/FileUploader';
+
 import { HeaderApp } from './components/HeaderApp'
 
 export const Encrypter = () => {
@@ -20,7 +22,10 @@ export const Encrypter = () => {
             { (active) &&
                 <DataShower/>
             }
-            {/* <FileExport/> */}
+            <FileUploader/>
+
+
+
         </>
     )
 }

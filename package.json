@@ -14,6 +14,7 @@
     "react-jwt": "^1.1.6",
     "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
+    "react-xml-parser": "^1.1.8",
     "redux-thunk": "^2.4.1",
     "use-file-picker": "^1.4.2",
     "web-vitals": "^2.1.4"

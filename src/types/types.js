@@ -1,3 +1,5 @@
 export const types = {
-    saveText: '[Text] save'
+    saveText: '[Text] save',
+    saveTextRead: '[Text] saveRead'
+
 }
