@@ -4,7 +4,12 @@ import { saveText, saveTextRead } from '../actions/text';
 import { jsonToText, xmlToText } from '../helper/toJson';
 import { useForm } from '../hook/useForm';
 import { FileExport } from './FileExport';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faWrench} from "@fortawesome/free-solid-svg-icons";
+
+
 var XMLParser = require('react-xml-parser');
+
 
 export const FileUploader=()=>{
     const {dataRead,data} = useSelector( state => state.text );
@@ -45,20 +50,37 @@ export const FileUploader=()=>{
     }
 
 	return(
-        <div>
-            <br/>
-            <p>Selecciones archivo XML o JSON para desencriptar:</p>
-			<input type="file" name="file" placeholder="Hola Mundo"onChange={changeHandler}/>
+        <div className='row mt-4'>
+           <div className='col-6'>
+           <h6>Seleccione archivo XML o JSON para desencriptar:</h6>
+			<input className='form-control' type="file" name="file" placeholder="Hola Mundo" onChange={changeHandler}/>
 			{isFilePicked ? (
-				<div>
-                    <p>Preview del archivo seleccionado:</p>
-                    <p>{selectedFile}</p>
-                    <br/>
-                    <form onSubmit={handleSubmission}>
-                        <input type="text" placeholder='Llave' name="key" autoComplete='off' value={key} onChange={handleInputChange}/>
-                        <input type="text" placeholder='Delimitador' name="delimitador" autoComplete='off' value={delimitador} onChange={handleInputChange}/>
-                        <button>Desencriptar</button>
-                    </form>
+				<div className='card mt-4'>
+                    <div className='card-header'>
+                        Preview del archivo seleccionado
+                    </div>
+                    <div className='card-body'>
+                    <p>
+                        <code>
+                            {selectedFile}
+                        </code>
+                    </p>
+                        <br/>
+                        <form onSubmit={handleSubmission}>
+                            <div className='row'>
+                                <div className='col-4'>
+                                    <input  className='form-control' type="text" placeholder='Delimitador' name="delimitador" autoComplete='off' value={delimitador} onChange={handleInputChange}/>
+                                </div>
+                                <div className='col-4'>
+                                    <input  className='form-control' type="text" placeholder='Llave' name="key" autoComplete='off' value={key} onChange={handleInputChange}/>
+                                </div>
+                                <div className='col-4'>
+                                    <button className='btn btn-info text-light'><FontAwesomeIcon icon={faWrench}></FontAwesomeIcon> Desencriptar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
 				</div>
                 
 			) : (
@@ -75,17 +97,36 @@ export const FileUploader=()=>{
                     ))
                 }
             </ul> */}
-
+           </div>
+           <div className='col-6'>
             {(text) && 
-            <>
-                <br/>
-                <div>Preview del texto a guardar:</div>
-                <br/>
-                <div>{text}</div>    
-                <br/>       
-                <FileExport datos={text} flag={true}/>
-            </>
-        }
+                <>
+                    <br/>
+                    <div className='mt-6'>
+                        <div className='card'>
+                            <div className='card-header'>
+                                Preview del texto a guardar
+                            </div>
+                            <div className='card-body'>
+                                <div className='row'>
+                                    <div className='col-12'>
+                                        <code className='text-dark'>
+                                            {text}
+                                        </code>
+                                    </div>
+                                    <div className='col d-flex mt-2'>
+                                        <div className='mx-auto'>
+                                            <FileExport datos={text} flag={true}/>
+                                        </div>
+                                    </div>
+                                </div>                           
+                            </div>   
+                        </div>        
+                    </div>
+                    
+                </>
+            }
+           </div>
 		</div>
 	)
 }
