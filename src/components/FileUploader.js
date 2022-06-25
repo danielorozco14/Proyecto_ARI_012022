@@ -39,11 +39,8 @@ export const FileUploader=()=>{
             dispatch(saveTextRead(text))
         }if(selectedFileType=="text/xml"){
             var xml = new XMLParser().parseFromString(selectedFile);
-            //Funcion desencriptar xml
-
-            let text = xmlToText(xml,key,delimitador)
-
-            dispatch(saveTextRead(xml))
+            setText(xmlToText(xml,key,delimitador))
+            dispatch(saveTextRead(text))
         }
     }
 

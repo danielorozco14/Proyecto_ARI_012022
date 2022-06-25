@@ -51,8 +51,50 @@ export const jsonToText=(json,key,delimitador)=>{
     return text.replace(/['"]+/g, '').slice(0, -1);
 }
 
-export const xmlToText=(xml,key)=>{
+export const xmlToText=(xml,key,delimitador)=>{
+    let objArr = xml.children[0].children
+    let text ="";
+    // console.log(key)
+    objArr.forEach(element =>{
+        let client ="";
 
+        let dasd = element.children
+
+        
+        for(let i = 0;i<dasd.length;i++){
+            if(i==3){
+                let test = String(dasd[i].value)
+
+                let creditCardText = decrypt(test,key);
+
+                let creditcardNumber2 = "";
+                for (var k = 0; k < creditCardText.length; k++) {
+                    let c = charToInt(creditCardText.charAt(k))
+                    creditcardNumber2+=(c);
+                }
+
+                let obj = `${creditcardNumber2}${delimitador}`;
+                client += obj;
+            }else{
+                let obj = `${dasd[i].value}${delimitador}`;
+                client += obj;
+            }
+        }
+
+
+        // element.children.forEach(element2 =>{
+
+
+
+        //     let obj = `${element2.value}${delimitador}`;
+        //     client += obj;
+
+
+        // })
+        text += `${client.slice(0,-1)}  `.slice(0,-1);
+    })
+
+    return text.replace(/['"]+/g, '').slice(0, -1);
 }
 
 function intToChar(int) {
