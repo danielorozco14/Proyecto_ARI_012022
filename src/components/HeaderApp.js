@@ -7,7 +7,7 @@ export const HeaderApp = () => {
                 <h1>Proyecto Administracion de Riesgos Informaticos</h1>
                 <div className="card">
                     <div className="card-header">
-                        <h2>Integrantes: </h2>
+                        <h3>Integrantes Grupo 4: </h3>
                     </div>
                     <div className='card-body'>
                         <ul className='list-group'>
